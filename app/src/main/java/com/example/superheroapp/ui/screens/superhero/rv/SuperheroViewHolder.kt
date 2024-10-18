@@ -11,6 +11,5 @@ class SuperheroViewHolder(
     fun bind(superhero: Superhero) {
         binding.tvCharacterName.text = superhero.name
         binding.ivCharacterPicture.setImageResource(superhero.photo)
-        binding.idCharacter.text = superhero.id.toString()
     }
 }
