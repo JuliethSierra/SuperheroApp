@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SuperheroApp</string>
+    <string name="app_title">Super Hero App</string>
+    <string name="hero_power">Poderes</string>
+    <string name="hero_friends">Amigos</string>
+    <string name="hero_enemy">Enemigos</string>
+    <string name="hero_location">Ubicación</string>
 </resources>

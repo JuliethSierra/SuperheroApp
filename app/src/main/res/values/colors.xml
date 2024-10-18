@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="TitleColor">#13678A</color>
+    <color name="ProgressBarColor">#45C4B0</color>
+    <color name="BtnColor">#9AEBA3</color>
+
 </resources>
