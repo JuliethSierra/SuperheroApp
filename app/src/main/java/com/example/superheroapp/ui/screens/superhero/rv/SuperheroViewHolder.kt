@@ -2,6 +2,7 @@ package com.example.superheroapp.ui.screens.superhero.rv
 
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
+import com.example.superheroapp.EnemiesActivity
 import com.example.superheroapp.FriendsActivity
 import com.example.superheroapp.PowersActivity
 import com.example.superheroapp.data.generatePowers
@@ -30,10 +31,19 @@ class SuperheroViewHolder(
 
         binding.btnFriends.setOnClickListener {
             val context = binding.root.context
-            val friendsNames = superhero.friends.map { it.name } // Extraer solo los nombres
+            val friendsNames = superhero.friends.map { it.name }
 
             val intent = Intent(context, FriendsActivity::class.java)
-            intent.putStringArrayListExtra("FRIENDS_LIST", ArrayList(friendsNames)) // Pasar los nombres
+            intent.putStringArrayListExtra("FRIENDS_LIST", ArrayList(friendsNames))
+            context.startActivity(intent)
+        }
+
+        binding.btnEnemy.setOnClickListener {
+            val context = binding.root.context
+            val enemiesList = superhero.enemies
+            val intent = Intent(context, EnemiesActivity::class.java).apply {
+                putParcelableArrayListExtra("ENEMIES_LIST", ArrayList(enemiesList))
+            }
             context.startActivity(intent)
         }
     }

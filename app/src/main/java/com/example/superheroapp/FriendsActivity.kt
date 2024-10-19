@@ -16,7 +16,6 @@ class FriendsActivity : AppCompatActivity() {
         binding = ActivityFriendsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Obtener los nombres de los amigos
         val friendsNames = intent.getStringArrayListExtra("FRIENDS_LIST") ?: arrayListOf()
 
         friendsAdapter = FriendsAdapter().apply {

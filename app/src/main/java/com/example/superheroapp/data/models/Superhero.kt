@@ -14,7 +14,7 @@ data class Superhero(
     val friends: List<Friend>,
     val mainEnemy: Enemy,
     // List of Enemy ids
-    val enemies: List<Int>,
+    val enemies: List<Enemy>,
     // List of Location ids
     val locations: List<Int>
 ): Serializable

@@ -29,12 +29,13 @@ fun generateSuperheroes(): List<Superhero> {
             photo = R.drawable.default_superhero, // Placeholder drawable resource
             powers = powers.shuffled().take(Random.nextInt(1, 6)).map { it.id },
 
-            // Cambia aquí para que genere objetos Friend en lugar de Int
+            // Generar amigos como objetos Friend
             friends = (0 until friends.size).shuffled().take(Random.nextInt(1, 6)).map { friends[it] },
 
             mainEnemy = enemies.random(),
 
-            enemies = (0 until enemies.size).shuffled().take(Random.nextInt(1, 6)),
+            // Cambiar aquí para que obtengas enemigos como objetos Enemy
+            enemies = (0 until Random.nextInt(1, 6)).map { enemies.random() }, // Obteniendo objetos Enemy directamente
             locations = (0 until locations.size).shuffled().take(Random.nextInt(1, 4))
         )
         superheroes.add(superhero)
@@ -45,8 +46,8 @@ fun generateSuperheroes(): List<Superhero> {
 
 fun generateFriends(): List<Friend> {
     return listOf(
-        Friend(id = 1, name = "Robin", photo = R.drawable.default_enemy),
-        Friend(id = 2, name = "Wonder Girl", photo = R.drawable.default_enemy),
+        Friend(id = 1, name = "Robin", photo = R.drawable.robin),
+        Friend(id = 2, name = "Wonder Girl", photo = R.drawable.robin),
         Friend(id = 3, name = "Woman", photo = R.drawable.default_enemy),
         Friend(id = 4, name = "Iron man", photo = R.drawable.default_enemy),
         Friend(id = 5, name = "Batman", photo = R.drawable.default_enemy),
