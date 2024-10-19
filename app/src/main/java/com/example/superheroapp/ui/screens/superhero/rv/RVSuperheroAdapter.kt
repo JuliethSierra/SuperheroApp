@@ -6,23 +6,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.superheroapp.data.models.Superhero
 import com.example.superheroapp.databinding.SuperheroViewBinding
 
-class RVSuperheroAdapter(
 
-) : RecyclerView.Adapter<SuperheroViewHolder>() {
+class RVSuperheroAdapter : RecyclerView.Adapter<SuperheroViewHolder>() {
 
-    var superhero = emptyList<Superhero>()
+    private var superheroesList = emptyList<Superhero>()
+
+    // Método para actualizar la lista de superhéroes
+    fun setSuperheroes(newSuperheroes: List<Superhero>) {
+        this.superheroesList = newSuperheroes
+        notifyDataSetChanged() // Asegúrate de notificar cambios
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperheroViewHolder {
         val binding = SuperheroViewBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return SuperheroViewHolder(binding = binding)
+        return SuperheroViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: SuperheroViewHolder, position: Int) {
-        holder.bind(superhero[position])
+        holder.bind(superheroesList[position])
     }
 
-    override fun getItemCount() = superhero.size
-
+    override fun getItemCount() = superheroesList.size
 }
+

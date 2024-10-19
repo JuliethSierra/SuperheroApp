@@ -44,6 +44,7 @@ android {
 dependencies {
     // Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.recyclerview)
     kapt(libs.hilt.android.compiler)
 
     implementation(libs.androidx.core.ktx)
