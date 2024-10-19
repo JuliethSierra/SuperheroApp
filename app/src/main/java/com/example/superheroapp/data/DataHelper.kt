@@ -5,6 +5,7 @@ import com.example.superheroapp.R
 import com.example.superheroapp.data.models.Location
 import com.example.superheroapp.data.models.Power
 import com.example.superheroapp.data.models.Enemy
+import com.example.superheroapp.data.models.Friend
 import com.example.superheroapp.data.models.Superhero
 
 import kotlin.random.Random
@@ -14,6 +15,7 @@ fun generateSuperheroes(): List<Superhero> {
     val enemies = generateEnemies()
     val locations = generateLocations()
     val powers = generatePowers()
+    val friends = generateFriends()
 
     // Dummy data for superheroes
     val superheroNames = listOf("Superman", "Batman", "Wonder Woman", "Flash", "Aquaman", "Spider-Man", "Iron Man", "Captain America", "Hulk", "Thor")
@@ -26,15 +28,32 @@ fun generateSuperheroes(): List<Superhero> {
             alterName = alterNames[i % alterNames.size],
             photo = R.drawable.default_superhero, // Placeholder drawable resource
             powers = powers.shuffled().take(Random.nextInt(1, 6)).map { it.id },
-            friends = (0..Random.nextInt(0, 5)).map { Random.nextInt(0, 20) }.distinct().take(Random.nextInt(1, 6)),
+
+            // Generar amigos como objetos Friend
+            friends = (0 until friends.size).shuffled().take(Random.nextInt(1, 6)).map { friends[it] },
+
             mainEnemy = enemies.random(),
-            enemies = (0..Random.nextInt(0, 5)).map { Random.nextInt(0, enemies.size) }.distinct().take(Random.nextInt(1, 6)),
-            locations = (0..Random.nextInt(0, 3)).map { Random.nextInt(0, locations.size) }.distinct().take(Random.nextInt(1, 4))
+
+            // Cambiar aquí para que obtengas enemigos como objetos Enemy
+            enemies = (0 until Random.nextInt(1, 6)).map { enemies.random() }, // Obteniendo objetos Enemy directamente
+            locations = (0 until locations.size).shuffled().take(Random.nextInt(1, 4))
         )
         superheroes.add(superhero)
     }
 
     return superheroes
+}
+
+fun generateFriends(): List<Friend> {
+    return listOf(
+        Friend(id = 1, name = "Robin", photo = R.drawable.robin),
+        Friend(id = 2, name = "Wonder Girl", photo = R.drawable.robin),
+        Friend(id = 3, name = "Woman", photo = R.drawable.default_enemy),
+        Friend(id = 4, name = "Iron man", photo = R.drawable.default_enemy),
+        Friend(id = 5, name = "Batman", photo = R.drawable.default_enemy),
+        Friend(id = 6, name = "Spiderman", photo = R.drawable.default_enemy),
+        Friend(id = 7, name = "Thor", photo = R.drawable.default_enemy),
+    )
 }
 
 fun generateEnemies(): List<Enemy> {
