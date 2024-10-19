@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import com.example.superheroapp.EnemiesActivity
 import com.example.superheroapp.FriendsActivity
+import com.example.superheroapp.LocationsActivity
 import com.example.superheroapp.PowersActivity
+import com.example.superheroapp.data.generateLocations
 import com.example.superheroapp.data.generatePowers
 import com.example.superheroapp.data.models.Superhero
 import com.example.superheroapp.databinding.SuperheroViewBinding
@@ -43,6 +45,19 @@ class SuperheroViewHolder(
             val enemiesList = superhero.enemies
             val intent = Intent(context, EnemiesActivity::class.java).apply {
                 putParcelableArrayListExtra("ENEMIES_LIST", ArrayList(enemiesList))
+            }
+            context.startActivity(intent)
+        }
+
+        binding.btnLocation.setOnClickListener {
+            val context = binding.root.context
+            // Obtener las ubicaciones de los superhéroes
+            val locationsList = superhero.locations.map { locationId ->
+                generateLocations().find { it.id == locationId }?.name ?: "Desconocido"
+            }
+
+            val intent = Intent(context, LocationsActivity::class.java).apply {
+                putStringArrayListExtra("LOCATIONS_LIST", ArrayList(locationsList))
             }
             context.startActivity(intent)
         }
